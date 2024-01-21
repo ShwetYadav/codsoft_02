@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #quiz-container {
+            text-align: left;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .options input {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Quiz App</h1>
+    </header>
+
+    <main>
+        <div id="quiz-container">
+            <div class="question">
+                <p>1. What is the capital of France?</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Paris"> Paris
+                    <input type="radio" name="q1" value="London"> London
+                    <input type="radio" name="q1" value="Berlin"> Berlin
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. What is the largest mammal?</p>
+                <div class="options">
+                    <input type="radio" name="q2" value="Elephant"> Elephant
+                    <input type="radio" name="q2" value="Blue Whale"> Blue Whale
+                    <input type="radio" name="q2" value="Giraffe"> Giraffe
+                </div>
+            </div>
+
+            <!-- Add more questions as needed -->
+
+            <button onclick="submitQuiz()">Submit Quiz</button>
+        </div>
+
+        <div id="result"></div>
+    </main>
+
+    <script>
+        function submitQuiz() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+
+            if (!q1 || !q2) {
+                alert("Please answer all questions.");
+                return;
+            }
+
+            let score = 0;
+
+            if (q1.value === "Paris") {
+                score++;
+            }
+
+            if (q2.value === "Blue Whale") {
+                score++;
+            }
+
+            displayResult(score);
+        }
+
+        function displayResult(score) {
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerText = `Your score is ${score}/2. ${score >= 1 ? 'Well done!' : 'Keep trying!'}`;
+        }
+    </script>
+
+</body>
+</html>
